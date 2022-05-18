@@ -62,8 +62,8 @@ def run_ffmpeg(args):
 	time_slice_value = ""
 	time_slice = args.time_slice
 	if time_slice:
-	    start, end = time_slice.split(",")
-	    time_slice_value = f",select='between(t\,{start}\,{end})'"
+		start, end = time_slice.split(",")
+		time_slice_value = f",select='between(t\,{start}\,{end})'"
 	do_system(f"ffmpeg -i {video} -qscale:v 1 -qmin 1 -vf \"fps={fps}{time_slice_value}\" {images}/%04d.jpg")
 
 def run_colmap(args):
@@ -87,7 +87,8 @@ def run_colmap(args):
 	except:
 		pass
 	do_system(f"mkdir {sparse}")
-	do_system(f"colmap mapper --database_path {db} --image_path {images} --output_path {sparse}")
+	# do_system(f"colmap mapper --database_path {db} --image_path {images} --output_path {sparse}")
+	do_system(f"colmap mapper --database_path {db} --image_path {images} --export_path {sparse}")
 	do_system(f"colmap bundle_adjuster --input_path {sparse}/0 --output_path {sparse}/0 --BundleAdjustment.refine_principal_point 1")
 	try:
 		shutil.rmtree(text)
