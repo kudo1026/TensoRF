@@ -1,4 +1,4 @@
-from dataLoader.tum import TUMDataset
+from .tum import TUMDataset
 from .llff import LLFFDataset
 from .blender import BlenderDataset
 from .nsvf import NSVF
